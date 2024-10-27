@@ -1,34 +1,65 @@
-{{ define "content" }}
-<h1>Todo List</h1>
-<form hx-post="/todos" hx-target="#todo-list" hx-swap="innerHTML">
-  <input type="text" name="title" placeholder="Add a new todo" required />
-  <input type="date" name="due_date" required />
-  <button type="submit">Add</button>
-</form>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo List</title>
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+    <link rel="stylesheet" href="../static/css/styles.css" />
+  </head>
+  <body>
+    <h1>Todo List</h1>
 
-<ul id="todo-list">
-  {{ range .todos }}
-  <li>
     <form
-      hx-post="/todos/{{ .ID }}/toggle"
-      hx-target="#todo-list"
+      class="todo-form"
+      hx-post="/todos"
+      hx-target="#todos"
       hx-swap="innerHTML"
-      style="display: inline"
+      hx-on:htmx:afterSwap="this.reset()"
     >
-      <button type="submit">{{ if .Completed }}✅{{ else }}⭕{{ end }}</button>
+      <div class="form-group">
+        <input
+          class="form-input"
+          name="title"
+          type="text"
+          placeholder="Todo title"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input class="form-input" name="due_date" type="date" required />
+      </div>
+      <button type="submit" class="form-button">Add Todo</button>
     </form>
-    {{ .Title }} - Due: {{ .DueDate.Format "2006-01-02" }}
-    <form
-      hx-delete="/todos/{{ .ID }}"
-      hx-target="#todo-list"
-      hx-swap="innerHTML"
-      style="display: inline"
-    >
-      <button type="submit">🗑</button>
-    </form>
-  </li>
-  {{ else }}
-  <li>No todos yet!</li>
-  {{ end }}
-</ul>
-{{ end }}
+
+    <ul id="todos" class="todo-list">
+      {{ range .todos }}
+      <li id="todo-{{ .ID }}" class="todo-item">
+        <span>
+          {{ .Title }} - Due: {{ .DueDate.Format "2006-01-02" }} - {{ if
+          .Completed }}<strong>Completed</strong>{{ else
+          }}<strong>Pending</strong>{{ end }}
+        </span>
+        <button
+          hx-post="/todos/{{ .ID }}/toggle"
+          hx-target="#todo-{{ .ID }}"
+          hx-swap="outerHTML"
+          class="todo-button"
+        >
+          {{ if .Completed }}Unmark{{ else }}Complete{{ end }}
+        </button>
+        <button
+          hx-delete="/todos/{{ .ID }}"
+          hx-target="#todo-{{ .ID }}"
+          hx-swap="outerHTML"
+          class="todo-button"
+        >
+          Delete
+        </button>
+      </li>
+      {{ else }}
+      <li class="no-todos">Todo list is empty.</li>
+      {{ end }}
+    </ul>
+  </body>
+</html>

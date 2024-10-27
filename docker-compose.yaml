@@ -5,15 +5,16 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db # Use the service name directly
+      - DB_HOST=db # The hostname that app will use to connect to db
       - DB_NAME=${DB_NAME}
     command: air
     networks:
-      - app_network # Connect to the custom network
+      - app-network
 
   db:
     container_name: db
@@ -27,11 +28,18 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     networks:
-      - app_network # Connect to the custom network
+      - app-network
 
 volumes:
   mysql_data:
 
 networks:
-  app_network: # Define a custom network
+  app-network:
+    driver: bridge

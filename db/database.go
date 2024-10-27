@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	// "os"
+	"os"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -12,12 +12,12 @@ import (
 var DB *sqlx.DB
 
 func ConnectDatabase() error {
-	// dbUser := os.Getenv("DB_USER")
-	// dbPassword := os.Getenv("DB_PASSWORD")
-	// dbHost := os.Getenv("DB_HOST")
-	// dbName := os.Getenv("DB_NAME")
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbHost := os.Getenv("DB_HOST")
+	dbName := os.Getenv("DB_NAME")
 
-	dsn := "todo_user:pass@tcp(db:3306)/tododb?parseTime=true"
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?parseTime=true", dbUser, dbPassword, dbHost, dbName)
 	db, err := sqlx.Connect("mysql", dsn)
 	if err != nil {
 		return fmt.Errorf("error connecting to database: %w", err)
