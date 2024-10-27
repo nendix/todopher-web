@@ -1,28 +1,26 @@
-# Use the official Golang image to build the Go app
-FROM golang:latest AS builder
+# Use the latest Go image as the base
+FROM golang:latest
 
-# Set the Current Working Directory inside the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy go.mod and go.sum files and download dependencies
+# Copy go.mod and go.sum files to the workspace
 COPY go.mod go.sum ./
+
+# Download all dependencies
 RUN go mod download
 
-# Copy the rest of the application code
+# Copy the source code from the host to the container
 COPY . .
 
-# Build the Go app
-RUN go build -o todo-app main.go
+# Build the application inside the container
+RUN go build -o .out/main cmd/main.go
 
-# Use a smaller image to run the Go app
-FROM alpine:latest
-WORKDIR /root/
+# Install Air for live reloading
+RUN go install github.com/air-verse/air@latest
 
-# Copy the built Go binary from the builder stage
-COPY --from=builder /app/todo-app .
+# Set executable permissions for the binary (optional if building inside the container)
+RUN chmod +x .out/main
 
-# Expose the application on port 8080
-EXPOSE 8080
-
-# Command to run the app
-CMD ["./todo-app"]
+# Set the command to run the application
+CMD ["air"]

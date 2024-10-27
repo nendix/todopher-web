@@ -7,23 +7,31 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=db
-      - DB_USER=todo_user
-      - DB_PASSWORD=pass
-      - DB_NAME=tododb
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=db # Use the service name directly
+      - DB_NAME=${DB_NAME}
+    command: air
+    networks:
+      - app_network # Connect to the custom network
 
   db:
     container_name: db
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tododb
-      MYSQL_USER: todo_user
-      MYSQL_PASSWORD: pass
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - app_network # Connect to the custom network
 
 volumes:
   mysql_data:
+
+networks:
+  app_network: # Define a custom network

@@ -17,7 +17,7 @@ func main() {
 
 	// Initialize Gin router
 	r := gin.Default()
-	r.LoadHTMLGlob("templates/*.html")
+	r.LoadHTMLGlob("web/templates/*.html")
 
 	// Routes
 	r.GET("/", handlers.GetTodos)
