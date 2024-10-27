@@ -1,0 +1,34 @@
+{{ define "content" }}
+<h1>Todo List</h1>
+<form hx-post="/todos" hx-target="#todo-list" hx-swap="innerHTML">
+  <input type="text" name="title" placeholder="Add a new todo" required />
+  <input type="date" name="due_date" required />
+  <button type="submit">Add</button>
+</form>
+
+<ul id="todo-list">
+  {{ range .todos }}
+  <li>
+    <form
+      hx-post="/todos/{{ .ID }}/toggle"
+      hx-target="#todo-list"
+      hx-swap="innerHTML"
+      style="display: inline"
+    >
+      <button type="submit">{{ if .Completed }}✅{{ else }}⭕{{ end }}</button>
+    </form>
+    {{ .Title }} - Due: {{ .DueDate.Format "2006-01-02" }}
+    <form
+      hx-delete="/todos/{{ .ID }}"
+      hx-target="#todo-list"
+      hx-swap="innerHTML"
+      style="display: inline"
+    >
+      <button type="submit">🗑</button>
+    </form>
+  </li>
+  {{ else }}
+  <li>No todos yet!</li>
+  {{ end }}
+</ul>
+{{ end }}
