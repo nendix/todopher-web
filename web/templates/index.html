@@ -35,24 +35,26 @@
     <ul id="todos" class="todo-list">
       {{ range .todos }}
       <li id="todo-{{ .ID }}" class="todo-item">
-        <span>
-          {{ .Title }} - Due: {{ .DueDate.Format "2006-01-02" }} - {{ if
-          .Completed }}<strong>Completed</strong>{{ else
-          }}<strong>Pending</strong>{{ end }}
-        </span>
-        <button
+        <input
+          type="checkbox"
           hx-post="/todos/{{ .ID }}/toggle"
           hx-target="#todo-{{ .ID }}"
           hx-swap="outerHTML"
-          class="todo-button"
-        >
-          {{ if .Completed }}Unmark{{ else }}Complete{{ end }}
-        </button>
+          {{
+          if
+          .Completed
+          }}checked{{
+          end
+          }}
+          class="todo-checkbox"
+          aria-label="Toggle completion status"
+        />
+        <span> {{ .Title }} - {{ .DueDate.Format "2006-01-02" }} </span>
         <button
           hx-delete="/todos/{{ .ID }}"
           hx-target="#todo-{{ .ID }}"
           hx-swap="outerHTML"
-          class="todo-button"
+          class="todo-button delete-button"
         >
           Delete
         </button>
