@@ -17,18 +17,14 @@
       hx-swap="innerHTML"
       hx-on:htmx:afterSwap="this.reset()"
     >
-      <div class="form-group">
-        <input
-          class="form-input"
-          name="title"
-          type="text"
-          placeholder="Todo title"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <input class="form-input" name="due_date" type="date" required />
-      </div>
+      <input
+        class="form-input"
+        name="title"
+        type="text"
+        placeholder="Todo title"
+        required
+      />
+      <input class="form-input" name="due_date" type="date" required />
       <button type="submit" class="form-button">Add Todo</button>
     </form>
 
