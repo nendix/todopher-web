@@ -12,7 +12,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=db # The hostname that app will use to connect to db
       - DB_NAME=${DB_NAME}
-    command: air
+    command: ["/app/.out/main"]
     networks:
       - app-network
 

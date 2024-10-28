@@ -15,6 +15,7 @@ func main() {
 	if err := db.ConnectDatabase(); err != nil {
 		log.Fatalf("Failed to connect to the database: %v", err)
 	}
+	defer db.DB.Close()
 
 	// Initialize Gin router
 	r := gin.Default()

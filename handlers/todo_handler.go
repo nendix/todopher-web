@@ -13,9 +13,9 @@ import (
 // GetIndex renders the main index page with the form and todo list
 func GetIndex(c *gin.Context) {
 	var todos []models.Todo
-	err := db.DB.Select(&todos, "SELECT * FROM todos ORDER BY due_date ASC")
+	err := db.DB.Select(&todos, "SELECT * FROM todos")
 	if err != nil {
-		c.String(http.StatusInternalServerError, "Error fetching todos")
+		c.String(http.StatusInternalServerError, "Error fetching todos: %v", err)
 		return
 	}
 	c.HTML(http.StatusOK, "index.html", gin.H{"todos": todos}) // Serve the main page
@@ -24,7 +24,7 @@ func GetIndex(c *gin.Context) {
 // GetTodos returns the list of todos
 func GetTodos(c *gin.Context) {
 	var todos []models.Todo
-	err := db.DB.Select(&todos, "SELECT * FROM todos ORDER BY due_date ASC")
+	err := db.DB.Select(&todos, "SELECT * FROM todos")
 	if err != nil {
 		c.String(http.StatusInternalServerError, "Error fetching todos")
 		return

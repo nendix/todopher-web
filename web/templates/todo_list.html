@@ -14,8 +14,7 @@
       end
       }}
     />
-    <span>{{ .Title }}</span>
-    <span class="due-date">- Due: {{ .DueDate.Format "2006-01-02" }}</span>
+    <span> {{ .Title }} - {{ .DueDate.Format "2006-01-02" }} </span>
   </label>
   <button
     hx-delete="/todos/{{ .ID }}"
