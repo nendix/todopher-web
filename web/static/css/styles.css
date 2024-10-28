@@ -19,6 +19,49 @@ h1 {
   color: var(--text-primary-color);
 }
 
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: var(--surface-color); /* Dark surface */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Input fields styling */
+input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--divider-color); /* Divider color */
+  background-color: var(--surface-color); /* Dark surface */
+  color: var(--text-primary-color);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+input:focus {
+  outline: none; /* Remove default outline */
+  border-color: var(--primary-color);
+  /* box-shadow: 0 0 5px var(--primary-color); */
+}
+
+/* Button styling */
+button {
+  background-color: var(--primary-color);
+  color: var(--text-primary-color);
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+button:hover {
+  background-color: #9a67ea; /* Darker purple on hover */
+}
+
 #todos {
   list-style-type: none;
   padding: 0;
@@ -45,66 +88,27 @@ h1 {
   margin-bottom: 10px; /* Space between items */
 }
 
-/* Style for the no-todos message */
-.no-todos {
-  text-align: center; /* Center align the message */
-  color: var(--text-primary-color); /* White color for the message */
-  padding: 20px; /* Add some padding */
-}
-
-.todo-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 600px;
-  margin: 20px auto;
-  background-color: var(--surface-color); /* Dark surface */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Checkbox styling */
 .todo-checkbox {
   margin-right: 10px; /* Space between checkbox and text */
   transform: scale(1.5); /* Increase the size of the checkbox */
   cursor: pointer; /* Change cursor to pointer on hover */
 }
 
-/* Style for the checkbox when checked */
 .todo-checkbox:checked {
   accent-color: var(--primary-color);
 }
 
-/* Input fields styling */
-input {
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid var(--divider-color); /* Divider color */
-  background-color: var(--surface-color); /* Dark surface */
-  color: var(--text-primary-color);
-}
-
-/* Button styling */
-button {
-  background-color: var(--primary-color);
-  color: var(--text-primary-color);
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition */
-}
-
-/* Delete button styling */
 button.delete-button {
   background-color: var(--delete-button-color); /* Red color */
 }
 
-button:hover {
-  background-color: #9a67ea; /* Darker purple on hover */
-}
-
 button.delete-button:hover {
   background-color: #d50000; /* Darker red on hover */
+}
+
+/* Style for the no-todos message */
+.no-todos {
+  text-align: center; /* Center align the message */
+  color: var(--text-primary-color); /* White color for the message */
+  padding: 20px; /* Add some padding */
 }
