@@ -1,55 +1,76 @@
-/* styles.css */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
 :root {
   --background-color: #121212; /* Dark grey background */
   --primary-color: #bb86fc; /* Purple */
   --text-primary-color: #ffffff; /* White text */
+  --text-secondary-color: #cccccc; /* White text */
   --divider-color: #37474f; /* Divider color */
   --surface-color: #1e1e1e; /* Dark surface for containers */
   --delete-button-color: #ff5252; /* Red for delete button */
 }
 
 body {
-  font-family: Helvetica, sans-serif;
+  padding: 20px;
+  font-family: "Rubik";
   background-color: var(--background-color);
-  color: var(--text-primary-color);
 }
-
-h1 {
+main {
+  width: 600px;
+  margin: 0 auto;
+}
+h1,
+h2,
+h3 {
   text-align: center;
   color: var(--text-primary-color);
 }
-
-.todo-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 600px;
-  margin: 20px auto;
-  background-color: var(--surface-color); /* Dark surface */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Input fields styling */
-input {
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid var(--divider-color); /* Divider color */
-  background-color: var(--surface-color); /* Dark surface */
+header {
+  text-align: center;
   color: var(--text-primary-color);
-  transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
 }
-input:focus {
-  outline: none; /* Remove default outline */
-  border-color: var(--primary-color);
-  /* box-shadow: 0 0 5px var(--primary-color); */
+.todo-list > button {
+  width: 100px;
+  margin: 20px auto;
+  display: block;
 }
-
+.todo-list ul {
+  padding: 10px 20px;
+  list-style-type: none;
+  background: var(--surface-color);
+  border-radius: 8px;
+}
+.todo-list li {
+  border-bottom: 1px solid var(--divider-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.todo-list li .todo-details {
+  margin-right: auto;
+}
+.todo-list li:last-child {
+  border: 0;
+}
+.todo-list li h3,
+.todos li p {
+  text-align: left;
+  margin-bottom: 0px;
+  margin-top: 4px;
+}
+.todo-list li p {
+  color: var(--text-secondary-color);
+}
+form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
 /* Button styling */
-button {
+form button {
   background-color: var(--primary-color);
   color: var(--text-primary-color);
   padding: 10px;
@@ -58,57 +79,45 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease; /* Smooth transition */
 }
-button:hover {
+form button:hover {
   background-color: #9a67ea; /* Darker purple on hover */
 }
-
-#todos {
-  list-style-type: none;
-  padding: 0;
-  max-width: 600px;
-  margin: 20px auto;
-  background-color: var(--surface-color); /* Dark surface */
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+form input {
+  flex-grow: 1;
+  border: 1px solid var(--divider-color);
+  border-radius: 4px;
+  padding: 10px;
+  background-color: var(--surface-color);
+  color: var(--text-primary-color);
+}
+input:focus {
+  outline: none; /* Remove default outline */
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
 }
 
-#todos li {
-  padding: 15px;
-  border-bottom: 1px solid var(--divider-color); /* Divider color */
+button {
+  padding: 10px;
+  text-wrap: nowrap;
+  font-family: "Rubik";
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+  box-sizing: border-box;
+  cursor: pointer;
+  background: var(--surface-color);
+  color: var(--text-primary-color);
 }
-
-/* Style for individual todo items */
-.todo-item {
-  display: flex; /* Use flexbox to align items */
-  align-items: center; /* Center align items vertically */
-  justify-content: space-between; /* Space between checkbox/title and delete button */
-  padding: 10px; /* Add padding to the list items */
-  border-radius: 8px; /* Rounded corners */
-  background-color: var(--surface-color); /* Background color for todo items */
-  margin-bottom: 10px; /* Space between items */
-}
-
-.todo-checkbox {
-  margin-right: 10px; /* Space between checkbox and text */
-  transform: scale(1.5); /* Increase the size of the checkbox */
-  cursor: pointer; /* Change cursor to pointer on hover */
-}
-
-.todo-checkbox:checked {
-  accent-color: var(--primary-color);
-}
-
 button.delete-button {
   background-color: var(--delete-button-color); /* Red color */
 }
-
 button.delete-button:hover {
   background-color: #d50000; /* Darker red on hover */
 }
-
-/* Style for the no-todos message */
-.no-todos {
-  text-align: center; /* Center align the message */
-  color: var(--text-primary-color); /* White color for the message */
-  padding: 20px; /* Add some padding */
+button.show-todos-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+button.show-todos-button:hover {
+  background-color: #9a67ea; /* Darker purple on hover */
 }
