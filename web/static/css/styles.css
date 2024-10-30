@@ -124,3 +124,7 @@ button.delete-button {
 button.delete-button:hover {
   color: var(--red);
 }
+.no-todos {
+  color: var(--text-primary);
+  text-align: center;
+}

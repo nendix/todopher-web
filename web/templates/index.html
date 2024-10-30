@@ -6,26 +6,37 @@
     <title>todopher</title>
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
     <link rel="stylesheet" href="../static/css/styles.css" />
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet"/>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <h1>todopher</h1>
     </header>
     <main>
-      <div class="todo-form" >
-        <form 
-          hx-post="/todos" 
+      <div class="todo-form">
+        <form
+          hx-post="/todos"
           hx-on::after-request="document.querySelector('form').reset()"
-          hx-target=".todo-list ul" 
+          hx-target=".todo-list ul"
           hx-swap="beforeend"
         >
-          <input type="text" name="title" placeholder="title" required>
-          <input type="date" name="due_date" placeholder="due date" required >
+          <input type="text" name="title" placeholder="title" required />
+          <input type="date" name="due_date" placeholder="due date" required />
           <button class="add-button"><i class="mdi mdi-plus-thick"></i></button>
         </form>
+      </div>
 
-      <div class="todo-list" hx-get="/todos" hx-swap="beforeend" hx-trigger="load"> <h3>list</h3> </div>
+      <div
+        class="todo-list"
+        hx-get="/todos"
+        hx-swap="beforeend"
+        hx-trigger="load"
+      >
+        <h3>list</h3>
+      </div>
     </main>
   </body>
 </html>
