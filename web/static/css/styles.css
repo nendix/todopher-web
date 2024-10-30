@@ -9,6 +9,7 @@
   --surface: #1e1e1e;
   --red: #ff5252;
   --green: #66cc8a;
+  --yellow: #ffeb3b;
 }
 
 body {
@@ -32,27 +33,24 @@ header {
   padding-bottom: 10px;
   margin-bottom: 30px;
 }
-.todo-list > button {
-  width: 100px;
-  margin: 20px auto;
-  display: block;
-}
 .todo-list ul {
   padding: 10px 20px;
   list-style-type: none;
   background: var(--surface);
   border-radius: 8px;
 }
-.todo-list li {
-  border-bottom: 1px solid var(--divider);
+.todo-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
+  gap: 1%;
 }
-.todo-list li .todo-details {
+.todo-item .todo-details {
   margin-right: auto;
-  cursor: pointer;
+}
+.todo-list li {
+  border-bottom: 1px solid var(--divider);
 }
 .todo-list li:last-child {
   border: 0;
@@ -66,19 +64,14 @@ header {
 .todo-list li p {
   color: var(--text-secondary);
 }
+form.edit-form {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
 form {
   display: flex;
   gap: 10px;
   width: 100%;
-}
-/* Button styling */
-form button {
-  background-color: var(--green);
-  color: var(--text-primary);
-  width: 10%;
-}
-form button:hover {
-  background-color: #4caf73; /* Darker purple on hover */
 }
 form input {
   flex-grow: 1;
@@ -98,7 +91,7 @@ button {
   padding: 10px;
   text-wrap: nowrap;
   font-family: "Rubik";
-  border: none;
+  border: 1px solid var(--divider);
   border-radius: 4px;
   transition: background-color 0.3s ease; /* Smooth transition */
   box-sizing: border-box;
@@ -106,14 +99,28 @@ button {
   background: var(--surface);
   color: var(--text-primary);
 }
+button.add-button {
+  color: var(--text-primary);
+  width: 10%;
+}
+button.add-button:hover {
+  color: var(--green);
+}
+button.save-button {
+  color: var(--text-primary);
+}
+button.save-button:hover {
+  color: var(--green);
+}
+button.edit-button {
+  color: var(--text-primary);
+}
+button.edit-button:hover {
+  color: var(--yellow);
+}
 button.delete-button {
-  background-color: var(--red); /* Red color */
+  color: var(--text-primary);
 }
 button.delete-button:hover {
-  background-color: #ff191f; /* Darker red on hover */
-}
-
-.icon {
-  font-family: "Material Design Icons";
-  font-size: 24px; /* Adjust icon size */
+  color: var(--red);
 }
