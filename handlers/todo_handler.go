@@ -18,7 +18,7 @@ func GetIndex(c *gin.Context) {
 		c.String(http.StatusInternalServerError, "Error fetching todos: %v", err)
 		return
 	}
-	c.HTML(http.StatusOK, "index.html", gin.H{"todos": todos}) // Serve the main page
+	c.HTML(http.StatusOK, "index.html", nil) // Serve the main page
 }
 
 // GetTodos returns the list of todos
@@ -100,11 +100,11 @@ func UpdateTodo(c *gin.Context) {
 		return
 	}
 
-	var updatedTodo models.Todo
-	err = db.DB.Get(&updatedTodo, "SELECT * FROM todos WHERE id = ?", id)
-	if err != nil {
-		c.String(http.StatusInternalServerError, "Error fetching updated todo")
-		return
+	// Create the updated todo object directly
+	updatedTodo := models.Todo{
+		ID:      id,
+		Title:   title,
+		DueDate: dueDate,
 	}
 
 	c.HTML(http.StatusOK, "todo_item.html", updatedTodo)
