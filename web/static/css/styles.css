@@ -1,19 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 :root {
-  --background-color: #121212; /* Dark grey background */
-  --primary-color: #bb86fc; /* Purple */
-  --text-primary-color: #ffffff; /* White text */
-  --text-secondary-color: #cccccc; /* White text */
-  --divider-color: #37474f; /* Divider color */
-  --surface-color: #1e1e1e; /* Dark surface for containers */
-  --delete-button-color: #ff5252; /* Red for delete button */
+  --background: #121212;
+  --purple: #bb86fc;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --divider: #555555;
+  --surface: #1e1e1e;
+  --red: #ff5252;
+  --green: #66cc8a;
 }
 
 body {
   padding: 20px;
   font-family: "Rubik";
-  background-color: var(--background-color);
+  background-color: var(--background);
 }
 main {
   width: 600px;
@@ -23,11 +24,11 @@ h1,
 h2,
 h3 {
   text-align: center;
-  color: var(--text-primary-color);
+  color: var(--text-primary);
 }
 header {
   text-align: center;
-  color: var(--text-primary-color);
+  color: var(--text-primary);
   padding-bottom: 10px;
   margin-bottom: 30px;
 }
@@ -39,11 +40,11 @@ header {
 .todo-list ul {
   padding: 10px 20px;
   list-style-type: none;
-  background: var(--surface-color);
+  background: var(--surface);
   border-radius: 8px;
 }
 .todo-list li {
-  border-bottom: 1px solid var(--divider-color);
+  border-bottom: 1px solid var(--divider);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,7 +63,7 @@ header {
   margin-top: 4px;
 }
 .todo-list li p {
-  color: var(--text-secondary-color);
+  color: var(--text-secondary);
 }
 form {
   display: flex;
@@ -71,29 +72,25 @@ form {
 }
 /* Button styling */
 form button {
-  background-color: var(--primary-color);
-  color: var(--text-primary-color);
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition */
+  background-color: var(--green);
+  color: var(--text-primary);
+  width: 10%;
 }
 form button:hover {
-  background-color: #9a67ea; /* Darker purple on hover */
+  background-color: #4caf73; /* Darker purple on hover */
 }
 form input {
   flex-grow: 1;
-  border: 1px solid var(--divider-color);
+  border: 1px solid var(--divider);
   border-radius: 4px;
   padding: 10px;
-  background-color: var(--surface-color);
-  color: var(--text-primary-color);
+  background-color: var(--surface);
+  color: var(--text-primary);
 }
 input:focus {
   outline: none; /* Remove default outline */
-  border-color: var(--primary-color);
-  box-shadow: 0 0 5px var(--primary-color);
+  border-color: var(--text-primary);
+  box-shadow: 0 0 5px var(--text-primary);
 }
 
 button {
@@ -105,19 +102,17 @@ button {
   transition: background-color 0.3s ease; /* Smooth transition */
   box-sizing: border-box;
   cursor: pointer;
-  background: var(--surface-color);
-  color: var(--text-primary-color);
+  background: var(--surface);
+  color: var(--text-primary);
 }
 button.delete-button {
-  background-color: var(--delete-button-color); /* Red color */
+  background-color: var(--red); /* Red color */
 }
 button.delete-button:hover {
-  background-color: #d50000; /* Darker red on hover */
+  background-color: #ff191f; /* Darker red on hover */
 }
-button.show-todos-button {
-  background-color: var(--primary-color);
-  color: white;
-}
-button.show-todos-button:hover {
-  background-color: #9a67ea; /* Darker purple on hover */
+
+.icon {
+  font-family: "Material Design Icons";
+  font-size: 24px; /* Adjust icon size */
 }
