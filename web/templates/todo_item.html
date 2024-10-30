@@ -1,19 +1,25 @@
 <li id="todo-{{ .ID }}">
-  <div
-    class="todo-details"
-    hx-get="/todos/edit/{{ .ID }}"
-    hx-swap="outerHTML"
-    hx-trigger="dblclick"
-  >
-    <h3>{{ .Title }}</h3>
-    <p>{{ .DueDate.Format "2006-01-02" }}</p>
+  <div class="todo-item">
+    <div class="todo-details">
+      <h3>{{ .Title }}</h3>
+      <p>{{ .DueDate.Format "2006-01-02" }}</p>
+    </div>
+    <button
+      class="edit-button"
+      hx-get="/todos/edit/{{ .ID }}"
+      hx-swap="outerHTML"
+      hx-target="closest .todo-item"
+      hx-trigger="click"
+    >
+      <i class="mdi mdi-pencil"></i>
+    </button>
+    <button
+      class="delete-button"
+      hx-delete="/todos/{{ .ID }}"
+      hx-target="#todo-{{ .ID }}"
+      hx-swap="outerHTML"
+    >
+      <i class="mdi mdi-delete"></i>
+    </button>
   </div>
-  <button
-    class="delete-button"
-    hx-delete="/todos/{{ .ID }}"
-    hx-target="#todo-{{ .ID }}"
-    hx-swap="outerHTML"
-  >
-    <i class="mdi mdi-delete"></i>
-  </button>
 </li>
