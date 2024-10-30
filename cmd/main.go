@@ -28,13 +28,16 @@ func main() {
 	})
 
 	// Route for the main index page
-	r.GET("/", handlers.GetIndex) // New handler for the index page
+	r.GET("/", handlers.GetIndex)
 
 	// API routes for todos
-	r.GET("/todos", handlers.GetTodos)                     // Fetch only the todo list
-	r.POST("/todos", handlers.CreateTodo)                  // Create a new todo
-	r.POST("/todos/:id/toggle", handlers.UpdateTodoStatus) // Toggle todo status
-	r.DELETE("/todos/:id", handlers.DeleteTodo)            // Delete a todo
+	r.GET("/todos", handlers.GetTodos)             // Fetch only the todo list
+	r.GET("/todos/:id", handlers.GetTodoByID)      // Fetch a single todo
+	r.GET("/todos/edit/:id", handlers.GetEditTodo) // Load todo data in form
+	r.POST("/todos", handlers.CreateTodo)          // Create a new todo
+	r.PATCH("/todos/:id", handlers.UpdateTodo)     // Edit a todo
+	// r.PATCH("/todos/:id/toggle", handlers.UpdateTodoStatus) // Toggle todo status
+	r.DELETE("/todos/:id", handlers.DeleteTodo) // Delete a todo
 
 	// Start server
 	r.SetTrustedProxies(nil)

@@ -52,6 +52,7 @@ header {
 }
 .todo-list li .todo-details {
   margin-right: auto;
+  cursor: pointer;
 }
 .todo-list li:last-child {
   border: 0;

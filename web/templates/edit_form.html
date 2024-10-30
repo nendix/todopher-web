@@ -1,0 +1,5 @@
+<form hx-patch="/todos/{{ .todo.ID }}" hx-target="#todo-{{ .todo.ID }}" hx-swap="outerHTML">
+  <input type="text" name="title" placeholder="title" value="{{ .todo.Title }}" required />
+  <input type="date" name="due_date" value="{{ .todo.DueDate.Format "2006-01-02" }}" required />
+  <button type="submit"><i class="mdi mdi-content-save"></i></button>
+</form>

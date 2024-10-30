@@ -2,7 +2,6 @@
   <div
     class="todo-details"
     hx-get="/todos/edit/{{ .ID }}"
-    hx-target="#todo-{{ .ID }}"
     hx-swap="outerHTML"
     hx-trigger="dblclick"
   >
