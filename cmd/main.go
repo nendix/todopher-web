@@ -37,7 +37,6 @@ func main() {
 	r.POST("/todos", handlers.CreateTodo)          // Create a new todo
 	r.PATCH("/todos/:id", handlers.UpdateTodo)     // Edit a todo
 	// r.PATCH("/todos/:id/toggle", handlers.UpdateTodoStatus) // Toggle todo status
-	r.POST("/todos/search", handlers.SearchTodos)
 	r.DELETE("/todos/:id", handlers.DeleteTodo) // Delete a todo
 
 	// Start server
