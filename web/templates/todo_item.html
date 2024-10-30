@@ -1,25 +1,20 @@
-<li id="todo-{{ .ID }}" class="todo-item">
-  <input
-    type="checkbox"
-    hx-post="/todos/{{ .ID }}/toggle"
+<li id="todo-{{ .ID }}">
+  <div
+    class="todo-details"
+    hx-get="/todos/edit/{{ .ID }}"
     hx-target="#todo-{{ .ID }}"
     hx-swap="outerHTML"
-    {{
-    if
-    .Completed
-    }}checked{{
-    end
-    }}
-    class="todo-checkbox"
-    aria-label="Toggle completion status"
-  />
-  <span> {{ .Title }} - {{ .DueDate.Format "2006-01-02" }} </span>
+    hx-trigger="dblclick"
+  >
+    <h3>{{ .Title }}</h3>
+    <p>{{ .DueDate.Format "2006-01-02" }}</p>
+  </div>
   <button
+    class="delete-button"
     hx-delete="/todos/{{ .ID }}"
     hx-target="#todo-{{ .ID }}"
     hx-swap="outerHTML"
-    class="todo-button delete-button"
   >
-    Delete
+    <i class="mdi mdi-delete"></i>
   </button>
 </li>

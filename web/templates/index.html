@@ -3,61 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Todo List</title>
+    <title>todopher</title>
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
     <link rel="stylesheet" href="../static/css/styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet"/>
   </head>
   <body>
-    <h1>Todo List</h1>
-
-    <form
-      class="todo-form"
-      hx-post="/todos"
-      hx-target="#todos"
-      hx-swap="innerHTML"
-      hx-on:htmx:afterSwap="this.reset()"
-    >
-      <input
-        class="form-input"
-        name="title"
-        type="text"
-        placeholder="Todo title"
-        required
-      />
-      <input class="form-input" name="due_date" type="date" required />
-      <button type="submit" class="form-button">Add Todo</button>
-    </form>
-
-    <ul id="todos" class="todo-list">
-      {{ range .todos }}
-      <li id="todo-{{ .ID }}" class="todo-item">
-        <input
-          type="checkbox"
-          hx-post="/todos/{{ .ID }}/toggle"
-          hx-target="#todo-{{ .ID }}"
-          hx-swap="outerHTML"
-          {{
-          if
-          .Completed
-          }}checked{{
-          end
-          }}
-          class="todo-checkbox"
-          aria-label="Toggle completion status"
-        />
-        <span> {{ .Title }} - {{ .DueDate.Format "2006-01-02" }} </span>
-        <button
-          hx-delete="/todos/{{ .ID }}"
-          hx-target="#todo-{{ .ID }}"
-          hx-swap="outerHTML"
-          class="todo-button delete-button"
+    <header>
+      <h1>todopher</h1>
+    </header>
+    <main>
+      <div class="todo-form" >
+        <form 
+          hx-post="/todos" 
+          hx-on::after-request="document.querySelector('form').reset()"
+          hx-target=".todo-list ul" 
+          hx-swap="beforeend"
         >
-          Delete
-        </button>
-      </li>
-      {{ else }}
-      <li class="no-todos">Todo list is empty.</li>
-      {{ end }}
-    </ul>
+          <input type="text" name="title" placeholder="title" required>
+          <input type="date" name="due_date" placeholder="due date" required >
+          <button><i class="mdi mdi-plus-thick"></i></button>
+        </form>
+
+      <div class="todo-list" hx-get="/todos" hx-swap="beforeend" hx-trigger="load"> <h3>list</h3> </div>
+    </main>
   </body>
 </html>
