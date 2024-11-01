@@ -1,20 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Oswald:wght@200..700&display=swap");
 
 :root {
-  --background: #121212;
-  --purple: #bb86fc;
-  --text-primary: #ffffff;
-  --text-secondary: #cccccc;
-  --divider: #555555;
-  --surface: #1e1e1e;
-  --red: #ff5252;
-  --green: #66cc8a;
-  --yellow: #ffeb3b;
+  --background: #181825;
+  --surface: #1e1e2e;
+  --purple: #cba6f7;
+  --text-primary: #cdd6f4;
+  --text-secondary: #a6adc8;
+  --divider: #585b70;
+  --red: #f38ba8;
+  --green: #a6e3a1;
+  --yellow: #f9e2af;
 }
 
 body {
   padding: 20px;
-  font-family: "Rubik";
+  font-family: "Baloo 2", sans-serif;
   background-color: var(--background);
 }
 main {
@@ -83,8 +83,7 @@ form input {
 }
 input:focus {
   outline: none; /* Remove default outline */
-  border-color: var(--text-primary);
-  box-shadow: 0 0 5px var(--text-primary);
+  box-shadow: 0 0 5px var(--divider);
 }
 
 button {
