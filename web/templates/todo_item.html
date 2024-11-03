@@ -1,5 +1,19 @@
 <li id="todo-{{ .ID }}">
   <div class="todo-item">
+    <input
+      class="checkbox"
+      hx-patch="/todos/{{ .ID }}/toggle"
+      hx-target="#todo-{{ .ID }}"
+      hx-swap="outerHTML"
+      type="checkbox"
+      name="status"
+      {{
+      if
+      .Completed
+      }}checked{{
+      end
+      }}
+    />
     <div class="todo-details">
       <h3>{{ .Title }}</h3>
       <p>{{ .DueDate.Format "2006-01-02" }}</p>

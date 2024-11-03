@@ -100,11 +100,12 @@ func UpdateTodo(c *gin.Context) {
 		return
 	}
 
-	// Create the updated todo object directly
-	updatedTodo := models.Todo{
-		ID:      id,
-		Title:   title,
-		DueDate: dueDate,
+	// Fetch the updated todo from the database based on the ID
+	var updatedTodo models.Todo
+	err = db.DB.Get(&updatedTodo, "SELECT * FROM todos WHERE id = ?", id)
+	if err != nil {
+		c.String(http.StatusNotFound, "Todo not found")
+		return
 	}
 
 	c.HTML(http.StatusOK, "todo_item.html", updatedTodo)
@@ -119,8 +120,15 @@ func UpdateTodoStatus(c *gin.Context) {
 		return
 	}
 
+	// Fetch the todo from the database based on the ID
+	var todo models.Todo
+	err = db.DB.Get(&todo, "SELECT * FROM todos WHERE id = ?", id)
+	if err != nil {
+		c.String(http.StatusNotFound, "Todo not found")
+		return
+	}
 	// Respond with the updated todo item HTML
-	c.HTML(http.StatusOK, "todo_item.html", nil)
+	c.HTML(http.StatusOK, "todo_item.html", todo)
 }
 
 // DeleteTodo deletes a todo by ID

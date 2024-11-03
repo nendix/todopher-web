@@ -123,6 +123,38 @@ button.delete-button {
 button.delete-button:hover {
   color: var(--red);
 }
+.checkbox {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  background-color: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+  position: relative;
+}
+.checkbox:checked {
+  background-color: var(--surface);
+  border-color: var(--divider);
+}
+.checkbox:checked::after {
+  content: "\F012C"; /* Unicode for MDI check icon */
+  font-family: "Material Design Icons";
+  color: var(--text-primary);
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.checkbox:hover {
+  border-color: var(--divider);
+  box-shadow: 0 0 5px var(--divider);
+}
 .no-todos {
   color: var(--text-primary);
   text-align: center;
