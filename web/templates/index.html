@@ -22,6 +22,7 @@
           hx-on::after-request="document.querySelector('form').reset()"
           hx-target=".todo-list ul"
           hx-swap="beforeend"
+          autocomplete="off"
         >
           <input type="text" name="title" placeholder="title" required />
           <input type="date" name="due_date" placeholder="due date" required />
