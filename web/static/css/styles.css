@@ -38,6 +38,7 @@ header {
   list-style-type: none;
   background: var(--surface);
   border-radius: 8px;
+  margin-top: 0;
 }
 .todo-item {
   display: flex;
@@ -158,4 +159,43 @@ button.delete-button:hover {
 .no-todos {
   color: var(--text-primary);
   text-align: center;
+}
+
+/* Navbar styles */
+.filter-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3%;
+  margin-top: 6%;
+  margin-bottom: 1%;
+  padding-right: 2%;
+}
+
+.filter-link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  position: relative;
+  padding-bottom: 0.5%;
+}
+
+.filter-link::after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--divider);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0; /* Default hidden */
+  transform: scaleX(0); /* Start with no width */
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease; /* Smooth transition */
+}
+
+.filter-link.active::after {
+  opacity: 1; /* Visible on active filter */
+  transform: scaleX(1); /* Expand to full width */
 }

@@ -43,6 +43,26 @@ func GetTodoByID(c *gin.Context) {
 	c.HTML(http.StatusOK, "todo_item.html", todo)
 }
 
+func GetCompletedTodos(c *gin.Context) {
+	var todos []models.Todo
+	err := db.DB.Select(&todos, "SELECT * FROM todos WHERE completed = true")
+	if err != nil {
+		c.String(http.StatusInternalServerError, "Error fetching completed todos")
+		return
+	}
+	c.HTML(http.StatusOK, "todo_list.html", gin.H{"todos": todos})
+}
+
+func GetPendingTodos(c *gin.Context) {
+	var todos []models.Todo
+	err := db.DB.Select(&todos, "SELECT * FROM todos WHERE completed = false")
+	if err != nil {
+		c.String(http.StatusInternalServerError, "Error fetching pending todos")
+		return
+	}
+	c.HTML(http.StatusOK, "todo_list.html", gin.H{"todos": todos})
+}
+
 // CreateTodo creates a new todo
 func CreateTodo(c *gin.Context) {
 	title := c.PostForm("title")

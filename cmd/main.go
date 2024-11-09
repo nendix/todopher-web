@@ -32,6 +32,8 @@ func main() {
 
 	// API routes for todos
 	r.GET("/todos", handlers.GetTodos)                      // Fetch only the todo list
+	r.GET("/todos/pending", handlers.GetPendingTodos)       // Fetch only the pending todo list
+	r.GET("/todos/completed", handlers.GetCompletedTodos)   // Fetch only the completed todo list
 	r.GET("/todos/:id", handlers.GetTodoByID)               // Fetch a single todo
 	r.GET("/todos/edit/:id", handlers.GetEditTodo)          // Load todo data in form
 	r.POST("/todos", handlers.CreateTodo)                   // Create a new todo
