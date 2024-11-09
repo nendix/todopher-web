@@ -93,33 +93,25 @@ button {
   font-family: "Rubik";
   border: 1px solid var(--divider);
   border-radius: 4px;
-  transition: background-color 0.3s ease; /* Smooth transition */
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease; /* Smooth transition */
   box-sizing: border-box;
   cursor: pointer;
   background: var(--surface);
   color: var(--text-primary);
 }
 button.add-button {
-  color: var(--text-primary);
   width: 10%;
 }
 button.add-button:hover {
   color: var(--green);
 }
-button.save-button {
-  color: var(--text-primary);
-}
 button.save-button:hover {
   color: var(--green);
 }
-button.edit-button {
-  color: var(--text-primary);
-}
 button.edit-button:hover {
   color: var(--yellow);
-}
-button.delete-button {
-  color: var(--text-primary);
 }
 button.delete-button:hover {
   color: var(--red);
@@ -133,14 +125,8 @@ button.delete-button:hover {
   border: 1px solid var(--divider);
   border-radius: 4px;
   cursor: pointer;
-  transition:
-    background-color 0.3s,
-    border-color 0.3s;
+  transition: box-shadow 0.3s ease;
   position: relative;
-}
-.checkbox:checked {
-  background-color: var(--surface);
-  border-color: var(--divider);
 }
 .checkbox:checked::after {
   content: "\F012C"; /* Unicode for MDI check icon */
@@ -153,7 +139,6 @@ button.delete-button:hover {
   transform: translate(-50%, -50%);
 }
 .checkbox:hover {
-  border-color: var(--divider);
   box-shadow: 0 0 5px var(--divider);
 }
 
