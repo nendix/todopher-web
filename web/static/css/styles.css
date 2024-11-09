@@ -156,12 +156,7 @@ button.delete-button:hover {
   border-color: var(--divider);
   box-shadow: 0 0 5px var(--divider);
 }
-.no-todos {
-  color: var(--text-primary);
-  text-align: center;
-}
 
-/* Navbar styles */
 .filter-nav {
   display: flex;
   justify-content: flex-end;
@@ -176,6 +171,7 @@ button.delete-button:hover {
   color: var(--text-secondary);
   position: relative;
   padding-bottom: 0.5%;
+  transition: color 0.3s ease;
 }
 
 .filter-link::after {
@@ -195,7 +191,15 @@ button.delete-button:hover {
     transform 0.3s ease; /* Smooth transition */
 }
 
+.filter-link:hover {
+  color: var(--text-primary);
+}
 .filter-link.active::after {
   opacity: 1; /* Visible on active filter */
   transform: scaleX(1); /* Expand to full width */
+}
+
+.no-todos {
+  color: var(--text-primary);
+  text-align: center;
 }
