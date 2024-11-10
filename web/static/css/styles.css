@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Oswald:wght@200..700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Doto:wght@100..900&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 :root {
   --background: #181825;
   --surface: #1e1e2e;
@@ -14,12 +14,12 @@
 }
 
 body {
-  padding: 20px;
-  font-family: "Baloo 2", sans-serif;
+  font-family: "Ubuntu";
   background-color: var(--background);
+  padding: 0.5%;
 }
 main {
-  width: 600px;
+  width: 33%;
   margin: 0 auto;
 }
 h1,
@@ -30,9 +30,10 @@ h3 {
 }
 header {
   text-align: center;
+  font-family: "Comfortaa";
   color: var(--text-primary);
-  padding-bottom: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 2%;
+  padding-bottom: 1%;
 }
 .todo-list ul {
   padding: 10px 20px;
@@ -177,7 +178,7 @@ button.search-button {
   background-color: var(--divider);
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -16%;
   opacity: 0; /* Default hidden */
   transform: scaleX(0); /* Start with no width */
   pointer-events: none;
