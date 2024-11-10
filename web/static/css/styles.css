@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Doto:wght@100..900&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 :root {
   --background: #181825;
   --surface: #1e1e2e;
@@ -19,7 +18,7 @@ body {
   padding: 0.5%;
 }
 main {
-  width: 33%;
+  width: 50%;
   margin: 0 auto;
 }
 h1,
@@ -91,8 +90,6 @@ input:focus {
 
 button {
   padding: 10px;
-  text-wrap: nowrap;
-  font-family: "Rubik";
   border: 1px solid var(--divider);
   border-radius: 4px;
   transition: color 0.3s ease;
@@ -103,6 +100,13 @@ button {
 }
 button.add-button {
   width: 10%;
+}
+button.search-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1.5em;
+  color: var(--text-primary);
 }
 button.add-button:hover {
   color: var(--green);
@@ -116,6 +120,10 @@ button.edit-button:hover {
 button.delete-button:hover {
   color: var(--red);
 }
+button.search-button:hover {
+  color: var(--blue);
+}
+
 .checkbox {
   appearance: none;
   width: 25px;
@@ -148,15 +156,7 @@ button.delete-button:hover {
   justify-content: space-between;
   gap: 10%;
   margin-bottom: 1%;
-}
-button.search-button {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--text-primary);
-}
-.search-button:hover {
-  color: var(--blue);
+  align-items: end;
 }
 
 .filter-nav {
