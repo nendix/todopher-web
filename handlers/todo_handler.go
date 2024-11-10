@@ -63,6 +63,26 @@ func GetPendingTodos(c *gin.Context) {
 	c.HTML(http.StatusOK, "todo_list.html", gin.H{"todos": todos})
 }
 
+func GetSearchForm(c *gin.Context) {
+	c.HTML(http.StatusOK, "search_form.html", nil)
+}
+
+func SearchTodos(c *gin.Context) {
+	query := c.Query("query")
+	var todos []models.Todo
+
+	// Modify the SQL query to filter based on the search term
+	searchQuery := "%" + query + "%"
+	err := db.DB.Select(&todos, "SELECT * FROM todos WHERE title LIKE ? ORDER BY due_date ASC", searchQuery)
+	if err != nil {
+		c.String(http.StatusInternalServerError, "Error searching todos")
+		return
+	}
+
+	// Render only the todo list with matched results
+	c.HTML(http.StatusOK, "todo_list.html", gin.H{"todos": todos})
+}
+
 // CreateTodo creates a new todo
 func CreateTodo(c *gin.Context) {
 	title := c.PostForm("title")

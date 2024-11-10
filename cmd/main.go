@@ -35,6 +35,8 @@ func main() {
 	r.GET("/todos/pending", handlers.GetPendingTodos)       // Fetch only the pending todo list
 	r.GET("/todos/completed", handlers.GetCompletedTodos)   // Fetch only the completed todo list
 	r.GET("/todos/:id", handlers.GetTodoByID)               // Fetch a single todo
+	r.GET("/todos/search", handlers.SearchTodos)            // Search for todos
+	r.GET("/search-form", handlers.GetSearchForm)           // Search for todos
 	r.GET("/todos/edit/:id", handlers.GetEditTodo)          // Load todo data in form
 	r.POST("/todos", handlers.CreateTodo)                   // Create a new todo
 	r.PATCH("/todos/:id", handlers.UpdateTodo)              // Edit a todo

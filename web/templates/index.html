@@ -30,35 +30,40 @@
           <button class="add-button"><i class="mdi mdi-plus-thick"></i></button>
         </form>
       </div>
-      <nav class="filter-nav">
-        <a
-          href="#"
-          class="filter-link active"
-          hx-get="/todos"
-          hx-target=".todo-list"
-          hx-swap="innerHTML"
-          onclick="setActiveLink(event)"
-          >all</a
-        >
-        <a
-          href="#"
-          class="filter-link"
-          hx-get="/todos/pending"
-          hx-target=".todo-list"
-          hx-swap="innerHTML"
-          onclick="setActiveLink(event)"
-          >pending</a
-        >
-        <a
-          href="#"
-          class="filter-link"
-          hx-get="/todos/completed"
-          hx-target=".todo-list"
-          hx-swap="innerHTML"
-          onclick="setActiveLink(event)"
-          >completed</a
-        >
-      </nav>
+      <div class="list-header">
+        <button class="search-button" hx-get="/search-form" hx-swap="outerHTML">
+          <i class="mdi mdi-magnify"></i>
+        </button>
+        <nav class="filter-nav">
+          <a
+            href="#"
+            class="filter-link active"
+            hx-get="/todos"
+            hx-target=".todo-list"
+            hx-swap="innerHTML"
+            onclick="setActiveLink(event)"
+            >all</a
+          >
+          <a
+            href="#"
+            class="filter-link"
+            hx-get="/todos/pending"
+            hx-target=".todo-list"
+            hx-swap="innerHTML"
+            onclick="setActiveLink(event)"
+            >pending</a
+          >
+          <a
+            href="#"
+            class="filter-link"
+            hx-get="/todos/completed"
+            hx-target=".todo-list"
+            hx-swap="innerHTML"
+            onclick="setActiveLink(event)"
+            >completed</a
+          >
+        </nav>
+      </div>
       <div class="todo-list" hx-get="/todos" hx-trigger="load"></div>
     </main>
   </body>

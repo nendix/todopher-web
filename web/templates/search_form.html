@@ -1,0 +1,13 @@
+<form
+  hx-get="/todos/search"
+  hx-trigger="keyup changed delay:300ms"
+  hx-target=".todo-list"
+  hx-swap="innerHTML"
+>
+  <input
+    type="text"
+    placeholder="search todos"
+    class="search-input"
+    name="query"
+  />
+</form>

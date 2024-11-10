@@ -10,6 +10,7 @@
   --red: #f38ba8;
   --green: #a6e3a1;
   --yellow: #f9e2af;
+  --blue: #89b4fa;
 }
 
 body {
@@ -93,9 +94,7 @@ button {
   font-family: "Rubik";
   border: 1px solid var(--divider);
   border-radius: 4px;
-  transition:
-    color 0.3s ease,
-    background-color 0.3s ease; /* Smooth transition */
+  transition: color 0.3s ease;
   box-sizing: border-box;
   cursor: pointer;
   background: var(--surface);
@@ -142,23 +141,34 @@ button.delete-button:hover {
   box-shadow: 0 0 5px var(--divider);
 }
 
-.filter-nav {
-  display: flex;
-  justify-content: flex-end;
-  gap: 3%;
+.list-header {
   margin-top: 6%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
   margin-bottom: 1%;
-  padding-right: 2%;
+}
+button.search-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-primary);
+}
+.search-button:hover {
+  color: var(--blue);
 }
 
+.filter-nav {
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: 2%;
+}
 .filter-link {
   text-decoration: none;
   color: var(--text-secondary);
   position: relative;
-  padding-bottom: 0.5%;
   transition: color 0.3s ease;
 }
-
 .filter-link::after {
   content: "";
   height: 2px;
@@ -175,7 +185,6 @@ button.delete-button:hover {
     opacity 0.3s ease,
     transform 0.3s ease; /* Smooth transition */
 }
-
 .filter-link:hover {
   color: var(--text-primary);
 }

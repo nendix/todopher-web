@@ -4,3 +4,9 @@ function setActiveLink(event) {
   });
   event.currentTarget.classList.add("active");
 }
+
+function toggleSearchForm() {
+  const searchForm = document.getElementById("searchForm");
+  searchForm.style.display =
+    searchForm.style.display === "block" ? "none" : "block";
+}
