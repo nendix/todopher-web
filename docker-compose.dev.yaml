@@ -1,12 +1,12 @@
 services:
-  db:
-    container_name: db
+  db_dev:
+    container_name: db_dev
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: tododb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
     ports:
       - "3306:3306"
     volumes:

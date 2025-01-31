@@ -10,11 +10,10 @@ test:
  
 run:
 	go build -o .out/${BINARY_NAME} cmd/main.go
+	./.out/${BINARY_NAME}
  
 deps:
-	go get github.com/gin-gonic/gin@v1.10.0
-	go get github.com/go-sql-driver/mysql@v1.8.1
-	go get github.com/jmoiron/sqlx@v1.4.0
+	go mod download	
 
 dev:
 	air
