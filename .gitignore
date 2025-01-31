@@ -1,4 +1,4 @@
 .env
 .out/
-docker-compose.dev.yml
+docker-compose.dev.yaml
 .air.toml
