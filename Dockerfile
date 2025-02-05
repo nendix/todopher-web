@@ -14,10 +14,7 @@ RUN go mod download
 COPY . .
 
 # Build the application inside the container
-RUN go build -o .out/main cmd/main.go
-
-# Set executable permissions for the binary (optional if building inside the container)
-RUN chmod +x .out/main
+RUN go build -o .out/main cmd/main.go && chmod +x .out/main
 
 # Set the command to run the application
 CMD ["/app/.out/main"]
