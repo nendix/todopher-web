@@ -2,3 +2,4 @@
 .out/
 docker-compose.dev.yaml
 .air.toml
+tmp/
