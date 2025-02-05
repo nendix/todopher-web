@@ -1,7 +1,9 @@
 services:
   app:
     container_name: app
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
@@ -10,11 +12,8 @@ services:
     environment:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=db # The hostname that app will use to connect to db
+      - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
-    command: ["/app/.out/main"]
-    networks:
-      - app-network
 
   db:
     container_name: db
@@ -34,12 +33,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
-    networks:
-      - app-network
 
 volumes:
   mysql_data:
-
-networks:
-  app-network:
-    driver: bridge
