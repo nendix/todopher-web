@@ -61,7 +61,7 @@ jobs:
             ```bash
             docker run -d --name <your_db_hostname> mysql:8.0
             ```
-        draft: false
-        prerelease: false
+          draft: false
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
