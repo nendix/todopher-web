@@ -50,23 +50,6 @@ jobs:
             ```bash
             docker compose up --build
             ```
-
-            Otherwise, Docker image is available in the GitHub Container Registry.
-
-            To pull the image:
-            ```bash
-            docker pull ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-            ```
-
-            To run the db:
-            ```bash
-            docker run -d --name db -e DB_USER=user -e DB_PASSWORD=pass -e DB_HOST=db -e DB_NAME=tododb -p 3306:3306 mysql:8.0
-            ```
-
-            To run the image:
-            ```bash
-            docker run -p 8080:8080 -e DB_USER=user -e DB_PASSWORD=pass -e DB_HOST=db -e DB_NAME=tododb ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-            ```
           draft: false
           prerelease: false
         env:

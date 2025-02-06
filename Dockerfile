@@ -18,3 +18,5 @@ RUN go build -o .out/main cmd/main.go && chmod +x .out/main
 
 # Set the command to run the application
 CMD ["/app/.out/main"]
+
+EXPOSE 8080
