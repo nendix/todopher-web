@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/nendix/toweb/db"
-	"github.com/nendix/toweb/handlers"
+	"github.com/nendix/todopher-web/db"
+	"github.com/nendix/todopher-web/handlers"
 
 	"github.com/gin-gonic/gin"
 )

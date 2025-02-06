@@ -1,4 +1,4 @@
-module github.com/nendix/toweb
+module github.com/nendix/todopher-web
 
 go 1.23.2
 

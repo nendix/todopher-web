@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/nendix/toweb/db"
-	"github.com/nendix/toweb/models"
+	"github.com/nendix/todopher-web/db"
+	"github.com/nendix/todopher-web/models"
 )
 
 // GetIndex renders the main index page with the form and todo list
