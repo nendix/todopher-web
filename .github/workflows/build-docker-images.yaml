@@ -46,9 +46,36 @@ jobs:
           tag_name: v${{ env.TAG }}
           release_name: "Release ${{ env.IMAGE_NAME }}:${{ env.TAG }}"
           body: |
-            To create and run the images, go to "todopher-web" directory and run the command:
+            To create and run the images, go to "todopher-web" directory and create a .env file with the following content:
+            ```txt
+            DB_USER=<your_db_user>
+            DB_PASSWORD=<your_db_password>
+            DB_HOST=<your_db_hostname>
+            DB_PORT=3306
+            DB_NAME=<your_db_name>
+            ```
+
+            and then run the command:
             ```bash
             docker compose up --build
+            ```
+
+
+            Otherwise, Docker image is available in the GitHub Container Registry.
+
+            To pull the image:
+            ```bash
+            docker pull ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+            ```
+
+            To run the database:
+            ```bash
+            docker run -d --name <your_db_hostname> mysql:8.0
+            ```
+
+            To run the image:
+            ```bash
+            docker run -p 8080:8080  ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
             ```
           draft: false
           prerelease: false
