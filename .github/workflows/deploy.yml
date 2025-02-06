@@ -17,16 +17,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup env
+      - name: Setup environment variables
         run: |
           TAG=$(date +%Y%m%d%H%M%S)
           echo "TAG=$TAG" >> $GITHUB_ENV
-
-      - name: Convert repository name to lowercase
-        run: echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
-      - name: Build Docker image
-        run: docker build -t ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} .
+          echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
@@ -35,8 +30,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push Docker Image
+      - name: Build and push Docker images
         run: |
+          docker-compose build
+          docker tag todopher-web ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
           docker push ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
 
       - name: Create GitHub Release
@@ -46,37 +43,40 @@ jobs:
           tag_name: v${{ env.TAG }}
           release_name: "Release ${{ env.IMAGE_NAME }}:${{ env.TAG }}"
           body: |
-            To create and run the images, go to "todopher-web" directory and create a .env file with the following content:
+            ## 🏗 Deployment Instructions
+
+            To run the application, **create a `.env` file** with the following content:
             ```txt
-            DB_USER=<your_db_user>
-            DB_PASSWORD=<your_db_password>
-            DB_HOST=<your_db_hostname>
+            DB_USER=${{ secrets.DB_USER }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            DB_HOST=db
             DB_PORT=3306
-            DB_NAME=<your_db_name>
+            DB_NAME=${{ secrets.DB_NAME }}
             ```
 
-            and then run the command:
+            Then, start the services with:
             ```bash
             docker compose up --build
             ```
 
+            The application will be available at `http://localhost:8080`.
 
-            Otherwise, Docker image is available in the GitHub Container Registry.
-
-            To pull the image:
+            ### 🐳 **Pulling the image manually**
             ```bash
             docker pull ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
             ```
 
-            To run the database:
+            ### 🛠 **Running the database manually**
             ```bash
-            docker run -d --name <your_db_hostname> mysql:8.0
+            docker run -d --name todopher-db -e MYSQL_ROOT_PASSWORD=${{ secrets.DB_PASSWORD }} -p 3306:3306 mysql:8.0
             ```
 
-            To run the image:
+            ### 🚀 **Running the app manually**
             ```bash
-            docker run -p 8080:8080  ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+            docker run -p 8080:8080 --env-file .env ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
             ```
+
+            🔥 **Docker image is available in the GitHub Container Registry.**
           draft: false
           prerelease: false
         env:
