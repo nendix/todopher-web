@@ -60,7 +60,7 @@ jobs:
 
             To run the db:
             ```bash
-            docker run -d --name db -e DB_USER=user -e DB_PASSWORD=pass -e DB_HOST=db -e DB_NAME=tododb -p 3306:3306
+            docker run -d --name db -e DB_USER=user -e DB_PASSWORD=pass -e DB_HOST=db -e DB_NAME=tododb -p 3306:3306 mysql:8.0
             ```
 
             To run the image:
