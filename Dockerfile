@@ -8,13 +8,13 @@ WORKDIR /app
 COPY go.mod go.sum ./
 
 # Download all dependencies
-RUN make deps
+RUN go mod download
 
 # Copy the source code from the host to the container
 COPY . .
 
 # Build the application inside the container
-RUN make build && chmod +x .out/main
+RUN go build -o .out/main cmd/main.go && chmod +x .out/main
 
 EXPOSE 8080
 
