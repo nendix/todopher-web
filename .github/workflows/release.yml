@@ -60,7 +60,7 @@ jobs:
 
             Otherwise, you can run the application manually:
 
-            ###  **Pull the image **
+            ### **Pull the image**
             ```bash
             docker pull ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
             ```
@@ -72,7 +72,7 @@ jobs:
 
             ###  **Run the database**
             ```bash
-            docker run -d --name db --network todopher-network -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=tododb -p 3306:3306 mysql:8.0
+            docker run -d --name db --network todopher-network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=tododb -e MYSQL_USER=user -e MYSQL_PASSWORD=pass -p 3306:3306 mysql:8.0
             ```
 
             ###  **Run the app**
