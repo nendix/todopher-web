@@ -6,19 +6,16 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
-	"github.com/joho/godotenv"
 )
 
 var DB *sqlx.DB
 
 func ConnectDatabase() error {
-	_ = godotenv.Load()
-
-	dbUser := os.Getenv("DB_USER")
-	dbPass := os.Getenv("DB_PASSWORD")
-	dbHost := os.Getenv("DB_HOST")
-	dbPort := os.Getenv("DB_PORT")
-	dbName := os.Getenv("DB_NAME")
+	dbUser := "user"
+	dbPass := "pass"
+	dbHost := "db"
+	dbPort := "3306"
+	dbName := "tododb"
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", dbUser, dbPass, dbHost, dbPort, dbName)
 	db, err := sqlx.Connect("mysql", dsn)
