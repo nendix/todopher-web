@@ -22,7 +22,10 @@ jobs:
           TAG=$(date +%Y%m%d%H%M%S)
           echo "TAG=$TAG" >> $GITHUB_ENV
 
-     - name: Build Docker image
+      - name: Convert repository name to lowercase
+        run: echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Build Docker image
         run: docker build -t ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} .
 
       - name: Log in to GitHub Container Registry
