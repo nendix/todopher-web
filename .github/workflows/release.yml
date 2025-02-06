@@ -46,9 +46,12 @@ jobs:
           tag_name: v${{ env.TAG }}
           release_name: "Release ${{ env.IMAGE_NAME }}:${{ env.TAG }}"
           body: |
-            ## 🏗 Deployment Instructions
+            ### 🏗 Deployment Instructions
 
-            Start the application with:
+            To start the application:
+            1. Download the source code from the assests.
+            2. Unzip the folder.
+            3. Go to the root directory*(todopher-web)* and run the following command:
             ```bash
             docker compose up --build
             ```
@@ -63,12 +66,12 @@ jobs:
 
             ###  **Running the database manually**
             ```bash
-            docker run -d --name todopher-db -e MYSQL_ROOT_PASSWORD=${{ secrets.DB_PASSWORD }} -p 3306:3306 mysql:8.0
+            docker run -d --name db -p 3306:3306 mysql:8.0
             ```
 
             ###  **Running the app manually**
             ```bash
-            docker run -p 8080:8080 --env-file .env ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+            docker run -p 8080:8080  ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
             ```
 
              **Docker image is available in the GitHub Container Registry.**
