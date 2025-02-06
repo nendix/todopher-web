@@ -49,29 +49,35 @@ jobs:
             ### 🏗 Deployment Instructions
 
             To start the application:
-            1. Download the source code from the assests.
+            1. Download the source code from the assets.
             2. Unzip the folder.
-            3. Go to the root directory*(todopher-web)* and run the following command:
+            3. Go to the root directory(todopher-web) and run the following command:
             ```bash
             docker compose up --build
             ```
 
             The application will be available at `http://localhost:8080`.
 
-            Otherwise, you can run the application manually with:
-            ###  **Pulling the image manually**
+            Otherwise, you can run the application manually:
+
+            ###  **Pull the image **
             ```bash
             docker pull ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
             ```
 
-            ###  **Running the database manually**
+            ### **Create a docker network**
             ```bash
-            docker run -d --name db -p 3306:3306 mysql:8.0
+            docker network create todopher-network
             ```
 
-            ###  **Running the app manually**
+            ###  **Run the database**
             ```bash
-            docker run -p 8080:8080  ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+            docker run -d --name db --network todopher-network -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=tododb -p 3306:3306 mysql:8.0
+            ```
+
+            ###  **Run the app**
+            ```bash
+            docker run -d --name todopher-web --network todopher-network -p 8080:8080 ghcr.io/nendix/todopher-web/todopher-web:20250206202312
             ```
 
              **Docker image is available in the GitHub Container Registry.**

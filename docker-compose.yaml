@@ -19,7 +19,7 @@ services:
     container_name: db
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: pass
       MYSQL_DATABASE: tododb
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
