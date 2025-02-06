@@ -17,10 +17,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup environment variables
+      - name: Setup env
         run: |
           TAG=$(date +%Y%m%d%H%M%S)
           echo "TAG=$TAG" >> $GITHUB_ENV
+
+      - name: Convert repository name to lowercase
+        run: echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Build Docker image
         run: docker build -t ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} .
@@ -33,7 +36,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Docker Image
-        run: docker push ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+        run: |
+          docker push ghcr.io/${{ env.REPO_NAME }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
 
       - name: Create GitHub Release
         uses: actions/create-release@v1.1.4
