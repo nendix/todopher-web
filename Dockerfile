@@ -1,23 +1,35 @@
-# Use the latest Go image as the base
-FROM golang:latest
+# Stage 1: Build
+FROM golang:latest AS builder
 
-# Set the working directory inside the container
+# Install make in the build environment
+RUN apt-get update && apt-get install -y make
+
+# Set the working directory
 WORKDIR /app
 
-# Copy go.mod and go.sum files to the workspace
-COPY go.mod go.sum ./
-
-# Download all dependencies
-RUN go mod download
-
-# Copy the source code from the host to the container
+# Copy the source code
 COPY . .
 
-# Build the application inside the container
-RUN go build -o .out/main cmd/main.go && chmod +x .out/main
+# Download dependencies
+RUN make deps
 
+# Build the application
+RUN make build
+
+# Stage 2: Run
+FROM scratch
+
+# Set working directory
+WORKDIR /app
+
+# Copy the compiled binary from the build stage
+COPY --from=builder /app/.out/main .
+
+# Copy template and static files
+COPY --from=builder /app/web/ /app/web
+
+# Expose the application port(Documentation purposes)
 EXPOSE 8080
 
-# Set the command to run the application
-CMD ["/app/.out/main"]
-
+# Run the application
+CMD ["./main"]
