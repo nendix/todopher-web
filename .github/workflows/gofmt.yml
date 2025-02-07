@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -21,9 +23,14 @@ jobs:
           go-version: stable
 
       - name: Run gofmt
+        run: gofmt -l -w .
+
+      - name: Commit changes if needed
         run: |
-          files=$(gofmt -l .)
-          if [ -n "$files" ]; then
-            echo "Go files not formatted:" $files
-            exit 1
+          if [[ -n $(git status --porcelain) ]]; then
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git add .
+            git commit -m "style: auto-format Go code"
+            git push
           fi
