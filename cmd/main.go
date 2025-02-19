@@ -21,8 +21,6 @@ func main() {
 	r.LoadHTMLGlob("web/templates/*.html")
 	r.Static("/static", "web/static")
 
-	// Gruppo di rotte con prefisso /todopher
-
 	// Route for the main index page
 	r.GET("/", handlers.GetIndex)
 
