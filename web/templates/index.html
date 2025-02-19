@@ -19,7 +19,7 @@
     <main>
       <div class="todo-form">
         <form
-          hx-post="/todos"
+          hx-post="todopher/todos"
           hx-on::after-request="document.querySelector('form').reset()"
           hx-target=".todo-list ul"
           hx-swap="beforeend"
@@ -31,14 +31,14 @@
         </form>
       </div>
       <div class="list-header">
-        <button class="search-button" hx-get="/search-form" hx-swap="outerHTML">
+        <button class="search-button" hx-get="todopher/search-form" hx-swap="outerHTML">
           <i class="mdi mdi-magnify"></i>
         </button>
         <nav class="filter-nav">
           <a
             href="#"
             class="filter-link active"
-            hx-get="/todos"
+            hx-get="/todopher/todos"
             hx-target=".todo-list"
             hx-swap="innerHTML"
             onclick="setActiveLink(event)"
@@ -47,7 +47,7 @@
           <a
             href="#"
             class="filter-link"
-            hx-get="/todos/pending"
+            hx-get="/todopher/todos/pending"
             hx-target=".todo-list"
             hx-swap="innerHTML"
             onclick="setActiveLink(event)"
@@ -56,7 +56,7 @@
           <a
             href="#"
             class="filter-link"
-            hx-get="/todos/completed"
+            hx-get="todopher/todos/completed"
             hx-target=".todo-list"
             hx-swap="innerHTML"
             onclick="setActiveLink(event)"
@@ -64,7 +64,7 @@
           >
         </nav>
       </div>
-      <div class="todo-list" hx-get="/todos" hx-trigger="load"></div>
+      <div class="todo-list" hx-get="todopher/todos" hx-trigger="load"></div>
     </main>
   </body>
 </html>
