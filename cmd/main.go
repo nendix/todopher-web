@@ -20,7 +20,7 @@ func main() {
 	// Initialize Gin router
 	r := gin.Default()
 	r.LoadHTMLGlob("web/templates/*.html")
-	r.Static("/static", "web/static")
+	r.Static("/todopher/static", "web/static")
 
 	// Routes
 	r.GET("/test", func(c *gin.Context) {
@@ -28,20 +28,20 @@ func main() {
 	})
 
 	// Route for the main index page
-	r.GET("/", handlers.GetIndex)
+	r.GET("/todopher", handlers.GetIndex)
 
 	// API routes for todos
-	r.GET("/todos", handlers.GetTodos)                      // Fetch only the todo list
-	r.GET("/todos/pending", handlers.GetPendingTodos)       // Fetch only the pending todo list
-	r.GET("/todos/completed", handlers.GetCompletedTodos)   // Fetch only the completed todo list
-	r.GET("/todos/:id", handlers.GetTodoByID)               // Fetch a single todo
-	r.GET("/todos/search", handlers.SearchTodos)            // Search for todos
-	r.GET("/search-form", handlers.GetSearchForm)           // Search for todos
-	r.GET("/todos/edit/:id", handlers.GetEditTodo)          // Load todo data in form
-	r.POST("/todos", handlers.CreateTodo)                   // Create a new todo
-	r.PATCH("/todos/:id", handlers.UpdateTodo)              // Edit a todo
-	r.PATCH("/todos/:id/toggle", handlers.UpdateTodoStatus) // Toggle todo status
-	r.DELETE("/todos/:id", handlers.DeleteTodo)             // Delete a todo
+	r.GET("/todopher/todos", handlers.GetTodos)                      // Fetch only the todo list
+	r.GET("/todopher/todos/pending", handlers.GetPendingTodos)       // Fetch only the pending todo list
+	r.GET("/todopher/todos/completed", handlers.GetCompletedTodos)   // Fetch only the completed todo list
+	r.GET("/todopher/todos/:id", handlers.GetTodoByID)               // Fetch a single todo
+	r.GET("/todopher/todos/search", handlers.SearchTodos)            // Search for todos
+	r.GET("/todopher/search-form", handlers.GetSearchForm)           // Search for todos
+	r.GET("/todopher/todos/edit/:id", handlers.GetEditTodo)          // Load todo data in form
+	r.POST("/todopher/todos", handlers.CreateTodo)                   // Create a new todo
+	r.PATCH("/todopher/todos/:id", handlers.UpdateTodo)              // Edit a todo
+	r.PATCH("/todopher/todos/:id/toggle", handlers.UpdateTodoStatus) // Toggle todo status
+	r.DELETE("/todopher/todos/:id", handlers.DeleteTodo)             // Delete a todo
 
 	// Start server
 	r.SetTrustedProxies(nil)
