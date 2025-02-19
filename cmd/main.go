@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/nendix/todopher-web/db"
 	"github.com/nendix/todopher-web/handlers"
