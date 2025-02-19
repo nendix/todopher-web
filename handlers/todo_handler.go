@@ -105,7 +105,7 @@ func CreateTodo(c *gin.Context) {
 		c.String(http.StatusInternalServerError, "Error retrieving new todo ID")
 		return
 	}
-	c.Redirect(http.StatusFound, "/todopher/todos/"+strconv.Itoa(int(id)))
+	c.Redirect(http.StatusFound, "/todos/"+strconv.Itoa(int(id)))
 }
 
 func GetEditTodo(c *gin.Context) {
