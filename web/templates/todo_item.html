@@ -2,7 +2,7 @@
   <div class="todo-item">
     <input
       class="checkbox"
-      hx-patch="/todopher/todos/{{ .ID }}/toggle"
+      hx-patch="/todos/{{ .ID }}/toggle"
       hx-target="#todo-{{ .ID }}"
       hx-swap="outerHTML"
       type="checkbox"
@@ -20,7 +20,7 @@
     </div>
     <button
       class="edit-button"
-      hx-get="/todopher/todos/edit/{{ .ID }}"
+      hx-get="/todos/edit/{{ .ID }}"
       hx-swap="outerHTML"
       hx-target="closest .todo-item"
       hx-trigger="click"
@@ -29,7 +29,7 @@
     </button>
     <button
       class="delete-button"
-      hx-delete="/todopher/todos/{{ .ID }}"
+      hx-delete="/todos/{{ .ID }}"
       hx-target="#todo-{{ .ID }}"
       hx-swap="outerHTML"
     >
