@@ -22,26 +22,26 @@ func main() {
 	r.LoadHTMLGlob("web/templates/*.html")
 	r.Static("/todopher/static", "web/static")
 
-	// Routes
-	r.GET("/test", func(c *gin.Context) {
-		c.String(http.StatusOK, "Test route is working")
-	})
+	// Gruppo di rotte con prefisso /todopher
+	todo := r.Group("/todopher")
+	{
 
-	// Route for the main index page
-	r.GET("/todopher", handlers.GetIndex)
+		// Route for the main index page
+		todo.GET("/", handlers.GetIndex)
 
-	// API routes for todos
-	r.GET("/todopher/todos", handlers.GetTodos)                      // Fetch only the todo list
-	r.GET("/todopher/todos/pending", handlers.GetPendingTodos)       // Fetch only the pending todo list
-	r.GET("/todopher/todos/completed", handlers.GetCompletedTodos)   // Fetch only the completed todo list
-	r.GET("/todopher/todos/:id", handlers.GetTodoByID)               // Fetch a single todo
-	r.GET("/todopher/todos/search", handlers.SearchTodos)            // Search for todos
-	r.GET("/todopher/search-form", handlers.GetSearchForm)           // Search for todos
-	r.GET("/todopher/todos/edit/:id", handlers.GetEditTodo)          // Load todo data in form
-	r.POST("/todopher/todos", handlers.CreateTodo)                   // Create a new todo
-	r.PATCH("/todopher/todos/:id", handlers.UpdateTodo)              // Edit a todo
-	r.PATCH("/todopher/todos/:id/toggle", handlers.UpdateTodoStatus) // Toggle todo status
-	r.DELETE("/todopher/todos/:id", handlers.DeleteTodo)             // Delete a todo
+		// API routes for todos
+		todo.GET("/todos", handlers.GetTodos)
+		todo.GET("/todos/pending", handlers.GetPendingTodos)
+		todo.GET("/todos/completed", handlers.GetCompletedTodos)
+		todo.GET("/todos/:id", handlers.GetTodoByID)
+		todo.GET("/todos/search", handlers.SearchTodos)
+		todo.GET("/search-form", handlers.GetSearchForm)
+		todo.GET("/todos/edit/:id", handlers.GetEditTodo)
+		todo.POST("/todos", handlers.CreateTodo)
+		todo.PATCH("/todos/:id", handlers.UpdateTodo)
+		todo.PATCH("/todos/:id/toggle", handlers.UpdateTodoStatus)
+		todo.DELETE("/todos/:id", handlers.DeleteTodo)
+	}
 
 	// Start server
 	r.SetTrustedProxies(nil)
