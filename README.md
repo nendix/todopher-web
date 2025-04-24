@@ -12,7 +12,7 @@ and manage their to-do lists efficiently.
 - Inline updates without page reloads using HTMX
 - Responsive and clean UI with custom CSS styling
 - Go backend using the Gin framework for fast and efficient request handling
-- Uses MySQL for storing todos
+- Uses MySQL for storing todos data
 
 ## Tech Stack
 ### Backend:
